@@ -7,7 +7,7 @@
 
 class List {
 private:
-    std::string path = "vaults";
+    std::string path = "vaults/";
     std::string user_task;
     std::string task_description;
     bool tick_task;
@@ -26,4 +26,5 @@ public:
     void outCompleteStatus();
 
     void printAllLists();
+    void vaultDelete(std::string vaultName);
 };

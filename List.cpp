@@ -43,5 +43,18 @@ void List::printAllLists() {
     outputFile << vaultList.dump(4) << std::endl;
     outputFile.close();
 
-    std::cout << vaultList.dump(4) << std::endl;
+    std::cout << vaultList.dump(4) << std::endl << std::endl;
+}
+
+void List::vaultDelete(std::string vaultName) {
+    std::filesystem::path targetVault = path + vaultName;
+    try {
+        if (std::filesystem::remove(targetVault)) {
+            std::cout << "Task deleted! :(" << std::endl;
+        } else {
+            std::cout << "Task not found! Make sure name is correct" << std::endl;
+        }
+    } catch (const std::filesystem::filesystem_error& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
 }
