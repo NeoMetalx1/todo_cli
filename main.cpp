@@ -1,31 +1,58 @@
-#include <iostream>
 #include "List.h"
+#include "Json.h"
+#include <vector>
+#include <time.h>
+
+void clearScreen() {
+#ifdef _WIN32
+    std::system("cls");
+#else
+    std::system("clear");
+#endif
+}
 
 int main() {
-    List todo_list;
-    std::string list = "Write own todo list";
-    todo_list.setUserTask(list);
-    todo_list.outUserTask();
+    int option;
+    std::string newListName;
+    List obj(""); 
+    JsonVault jsonObj(""); 
 
-    std::string TaskDescription = "Lorem ipsum i pupu balala, tratata burtata jukevic";
-    todo_list.setTaskDescription(TaskDescription);
-    todo_list.outTaskDescription();
+    do {
+        std::cout << "1. My tasks" << std::endl;
+        std::cout << "2. Create new task" << std::endl;
+        std::cout << "3. Exit" << std::endl;
+        do {
+            std::cout << "Choose option: ";
+            std::cin >> option;
+        } while (option < 1 || option > 3);
 
-    bool taskStatus = true;
-    todo_list.setCompleteStatus(taskStatus);
-    todo_list.outCompleteStatus();
+        switch(option) {
+            case 1: {
+                obj.printAllLists();
+                break;
+            }
+            case 2: {
+                std::cout << "Enter new task title: ";
+                std::cin.ignore();
+                std::getline(std::cin, newListName);
 
+                if (newListName.empty()) {
+                    std::cout << "Error name cant be empty!" << std::endl;
+                    return 1; 
+                }
 
-    List ideas_list;
-    std::string ideas_list_name = "Ideas list";
-    todo_list.setUserTask(ideas_list_name);
-    todo_list.outUserTask();
+                obj = List(newListName);
+                jsonObj = JsonVault(newListName);
+                jsonObj.jsonCreation(newListName);
 
-    std::string ideas_list_description = "Lorem ipsum i pupu balala, tratata burtata jukevic hydashdaysh dsdyhashdya ahdaydhasyd dhadyadhyas";
-    todo_list.setTaskDescription(ideas_list_description);
-    todo_list.outTaskDescription();
+                std::cout << std::endl << "Task created" << "\n\n";
+                break;
+            }
+            case 3:
+                break;
+        }
 
-    bool ideas_list_status = false;
-    todo_list.setCompleteStatus(ideas_list_status);
-    todo_list.outCompleteStatus();
+    } while (option != 3);
+
+    return 0;
 }
