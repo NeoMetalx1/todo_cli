@@ -1,4 +1,4 @@
-nlohmann
-vault
-.vscode
-ideas
+.idea/
+.vscode/
+vault/
+nlohmann/
