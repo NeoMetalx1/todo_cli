@@ -9,6 +9,7 @@ includes/Json/nlohmann/
 *.exe
 *.o
 *.so
+*.json
 
 *.7z
 *.dmg
