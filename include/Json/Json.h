@@ -2,25 +2,26 @@
 
 #include <iostream>
 #include <fstream>
-#include "nlohmann\json.hpp"
+#include <filesystem>
+#include "nlohmann/json.hpp"
 
 class Json {
 private:
-    nlohmann::json jsonNew;
+    std::string jsonName;
 public:
-    Json(std::string jsonName) {
-        std::string path = "vault/" + jsonName;
-        std::ofstream jsonVault(path);
+    Json(std::string userJsonName) {
+        jsonName = userJsonName;
+        std::string path = "vault/" + jsonName + ".json";
 
-        if (!jsonVault.is_open()) {
-            std::cout << "Failed to open Json vault";
-        } else {
+        if (!std::filesystem::exists(path)) {
+            std::ofstream jsonVault(path);
+            nlohmann::json jsonNew;
             jsonNew["Name"] = jsonName;
-            jsonNew["Description"] = "Default";
-            jsonNew["Task_Status"] = true;
-
+            jsonNew["Description"] = "";
             jsonVault << std::setw(4) << jsonNew;
+            jsonVault.close();
         }
-        jsonVault.close();
     }
+
+    void editDiscription(std::string description);
 };

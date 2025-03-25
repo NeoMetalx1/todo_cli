@@ -1,5 +1,8 @@
 #include "include\Json\Json.h"
 
 int main() {
-    Json jsonVault("Task 1");
+    std::string userDescription;
+
+    Json jsonVault("Task 2"); // create json file with name in quotes
+    jsonVault.editDiscription(userDescription);
 }
