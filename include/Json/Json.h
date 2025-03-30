@@ -9,7 +9,7 @@ class Json {
 private:
     std::string jsonName;
 public:
-    Json(std::string userJsonName) {
+    Json(const std::string& userJsonName) {
         jsonName = userJsonName;
         std::string path = "vault/" + jsonName + ".json";
 
@@ -18,10 +18,12 @@ public:
             nlohmann::json jsonNew;
             jsonNew["Name"] = jsonName;
             jsonNew["Description"] = "";
+            jsonNew["Status"] = false;
             jsonVault << std::setw(4) << jsonNew;
             jsonVault.close();
         }
     }
 
-    void editDiscription(std::string description);
+    void editDiscription(const std::string& description);
+    void editStatus(const bool& status);
 };
