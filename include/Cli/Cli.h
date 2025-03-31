@@ -12,5 +12,8 @@ private:
 public:
 
     CLI_GUI();
+    void printTasks();
+    void helpMenu();
+    void versionMenu();
 
 };

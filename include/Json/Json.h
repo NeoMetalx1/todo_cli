@@ -26,4 +26,5 @@ public:
 
     void editDiscription(const std::string& description);
     void editStatus(const bool& status);
+    void deleteVault(const std::string& userJsonName);
 };

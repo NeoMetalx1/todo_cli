@@ -33,3 +33,21 @@ void Json::editStatus(const bool& status) {
     jsonVault << std::setw(4) << existingJson;
     jsonVault.close();
 }
+
+void Json::deleteVault(const std::string& userJsonName) {
+    namespace fs = std::filesystem;
+
+    jsonName = userJsonName;
+    std::string path = "vault/" + jsonName + ".json";
+
+    if (fs::exists(path)) {
+        if (fs::remove(path)) {
+            std::cout << "Task deleted: " << path << '\n';
+        } else {
+            std::cerr << "Error while trying to delete task: " << path << '\n';
+        }
+    } else {
+        std::cerr << "Task not found: " << path << '\n';
+    }
+
+}
