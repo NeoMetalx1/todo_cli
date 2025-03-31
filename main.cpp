@@ -31,6 +31,8 @@ int main(int argc, char* argv[]) {
             std::string description = argv[++i];
             changeDescription.editDiscription(description);
             return 0;
+        } else {
+            std::cout << "Unknown argument: " << arg << "\n";
         }
 
         
