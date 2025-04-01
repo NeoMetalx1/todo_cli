@@ -42,5 +42,5 @@ void CLI_GUI::helpMenu() {
 }
 
 void CLI_GUI::versionMenu() {
-    std::cout << ">> Program version v0.0.3\n";
+    std::cout << ">> Program version v0.0.5\n";
 }
