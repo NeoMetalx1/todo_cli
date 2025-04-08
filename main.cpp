@@ -9,6 +9,8 @@ int main(int argc, char* argv[]) {
     cliArguments arguments;
 
     arguments.argumentHandler(argc, argv);
+    Json test("test12");
+    test.dataGet("task");
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration = end - start;

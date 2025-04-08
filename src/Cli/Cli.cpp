@@ -29,7 +29,7 @@ void CLI_GUI::printAllTasks() {
             break;
         }
     } else {
-        std::cout << "Tasks not find!\n";
+        std::cout << ">> Tasks not find!\n";
     }
 
 }

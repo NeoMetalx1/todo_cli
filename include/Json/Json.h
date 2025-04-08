@@ -24,11 +24,12 @@ public:
             jsonVault.close();
             std::cout << "Task created!\n";
         } else {
-            std::cout << "Cant find vault folder!\n";
+            std::cout << ">> Cant find vault folder!\n";
         }
     }
 
     void editDiscription(const std::string& description);
     void editStatus(const bool& status);
     void deleteVault(const std::string& userJsonName);
+    void dataGet(const std::string& vaultName);
 };
