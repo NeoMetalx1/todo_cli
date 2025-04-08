@@ -1,7 +1,11 @@
 #include "../../include/Cli/Flags.h"
 
 int cliArguments::argumentHandler(int argc, char* argv[]) {
+    Json vaultManage;
     CLI_GUI interface;
+    std::string vaultName;
+    std::string* vaultName_ptr = &vaultName;
+
     if (argc == 1) {
         interface.helpMenu();
         return 0;
@@ -17,22 +21,23 @@ int cliArguments::argumentHandler(int argc, char* argv[]) {
             interface.versionMenu();
             return 0;
         } else if (arg == "-s" || arg == "--show") {
-            interface.printAllTasks();
+            if (argc == 3) {
+                *vaultName_ptr = argv[++i];
+                vaultManage.printTaskData(vaultName);
+            } else interface.printAllTasks();
             return 0;
         } else if (arg == "-d" || arg == "--delete") {
-            std::string path = argv[++i];
-            Json taskConfigurer(path);
-            taskConfigurer.deleteVault(path);
+            *vaultName_ptr = argv[++i];
+            vaultManage.deleteVault(vaultName);
             return 0;
         } else if (arg == "-c" || arg == "--create") {
-            std::string jsonName = argv[++i];
-            Json taskCreate(jsonName);
+            *vaultName_ptr = argv[++i];
+            vaultManage.createJsonVault(vaultName);
             return 0;
         } else if (arg == "--change-desc" || arg == "--description") {
-            std::string path = argv[++i];
-            Json changeDescription(path);
+            *vaultName_ptr = argv[++i];
             std::string description = argv[++i];
-            changeDescription.editDiscription(description);
+            vaultManage.editDiscription(vaultName, description);
             return 0;
         } else {
             std::cout << "Unknown argument: " << arg << "\n";

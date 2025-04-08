@@ -1,7 +1,26 @@
 #include "../../include/Json/Json.h"
 
-void Json::editDiscription(const std::string& description) {
-    std::string path = rootPath + jsonName + ".json";
+void Json::createJsonVault(const std::string& userJsonName) {
+    jsonName = userJsonName;
+    std::string path = vaultPath + jsonName + ".json";
+
+    if (std::filesystem::exists(vaultPath)) {
+        std::ofstream jsonVault(path);
+        nlohmann::json jsonNew;
+        jsonNew["Name"] = jsonName;
+        jsonNew["Description"] = "";
+        jsonNew["Status"] = false;
+        jsonVault << std::setw(4) << jsonNew;
+        jsonVault.close();
+        std::cout << "Task created!\n";
+    } else {
+        std::cout << ">> Cant find vault folder!\n";
+    }
+}
+
+void Json::editDiscription(const std::string& userJsonName, const std::string& description) {
+    jsonName = userJsonName;
+    std::string path = vaultPath + jsonName + ".json";
     std::ifstream readFile(path); // make reader
     nlohmann::json existingJson;
 
@@ -18,7 +37,7 @@ void Json::editDiscription(const std::string& description) {
 }
 
 void Json::editStatus(const bool& status) {
-    std::string path = rootPath + jsonName + ".json";
+    std::string path = vaultPath + jsonName + ".json";
     std::ifstream readFile(path);
     nlohmann::json existingJson;
 
@@ -38,7 +57,7 @@ void Json::deleteVault(const std::string& userJsonName) {
     namespace fs = std::filesystem;
 
     jsonName = userJsonName;
-    std::string path = rootPath + jsonName + ".json";
+    std::string path = vaultPath + jsonName + ".json";
 
     if (fs::exists(path)) {
         if (fs::remove(path)) {
@@ -52,23 +71,24 @@ void Json::deleteVault(const std::string& userJsonName) {
 
 }
 
-void Json::dataGet(const std::string& vaultName) {
-    std::string vault = rootPath + vaultName + ".json";
+void Json::printTaskData(const std::string& vaultName) {
+    std::string vault = vaultPath + vaultName + ".json";
     std::ifstream vaultFile(vault);
 
     if (!vaultFile.is_open()) {
         std::cout << "Could not open input file\n";
     }
 
-    std::vector<std::string> vaultLines;
-    std::string vaultLine;
+    nlohmann::json vaultEditor;
+    vaultFile >> vaultEditor;
 
-    while(std::getline(vaultFile, vaultLine)) {
-        vaultLines.push_back(vaultLine);
-    }
+    std::string name = vaultEditor["Name"];
+    std::string description = vaultEditor["Description"];
+    bool status = vaultEditor["Status"];
 
-    for ( unsigned int i = 0; i < vaultLines.size(); i++ ) {
-        std::cout << (i+1) << ": " << vaultLines[i] << "\n"; 
-    }    
-
+    std::cout << "==========================================================================================\n";
+    std::cout << "\tName: " << name << "\n";
+    std::cout << "\tDescription: " << description << "\n";
+    std::cout << "\tStatus: " << status << "\n";
+    std::cout << "==========================================================================================\n";
 }

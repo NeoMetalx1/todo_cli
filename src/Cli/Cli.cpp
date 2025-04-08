@@ -23,10 +23,9 @@ std::vector<std::string> CLI_GUI::vaultListScan(const std::string& vaultPath) {
 
 void CLI_GUI::printAllTasks() {
     if (!vaultList.empty()) {
+        std::cout << "Your tasks: \n";
         for (int i = 0; i < vaultList.size(); i++) {
-            std::cout << "Your tasks: \n";
             std::cout << vaultList[i] << "\n";
-            break;
         }
     } else {
         std::cout << ">> Tasks not find!\n";
@@ -40,7 +39,7 @@ void CLI_GUI::helpMenu() {
     std::cout << "  -h, --help                                           Show help menu\n";
     std::cout << "  -v, --version                                        Show program version\n";
     std::cout << "\n";
-    std::cout << "  -s, --show                                           Show your tasks\n";
+    std::cout << "  -s, --show (optional:[task])                         Show your tasks\n";
     std::cout << "  -d, --delete [task]                                  Delete your task\n";
     std::cout << "  -c, --create [task]                                  Create new task\n";
     std::cout << "  --change-desc, --description [task] [description]    Change Description in task\n";
@@ -48,5 +47,5 @@ void CLI_GUI::helpMenu() {
 }
 
 void CLI_GUI::versionMenu() {
-    std::cout << ">> Program version v0.0.6\n";
+    std::cout << ">> Program version v0.0.7\n";
 }
