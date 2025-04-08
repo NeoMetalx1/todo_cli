@@ -2,6 +2,10 @@
 
 int cliArguments::argumentHandler(int argc, char* argv[]) {
     CLI_GUI interface;
+    if (argc == 1) {
+        interface.helpMenu();
+        return 0;
+    }
 
     for (int i = 1; i < argc; i++) {
         std::string arg = argv[i];
@@ -13,7 +17,7 @@ int cliArguments::argumentHandler(int argc, char* argv[]) {
             interface.versionMenu();
             return 0;
         } else if (arg == "-s" || arg == "--show") {
-            interface.printTasks();
+            interface.printAllTasks();
             return 0;
         } else if (arg == "-d" || arg == "--delete") {
             std::string path = argv[++i];
@@ -21,8 +25,8 @@ int cliArguments::argumentHandler(int argc, char* argv[]) {
             taskConfigurer.deleteVault(path);
             return 0;
         } else if (arg == "-c" || arg == "--create") {
-            std::string path = argv[++i];
-            Json taskCreate(path);
+            std::string jsonName = argv[++i];
+            Json taskCreate(jsonName);
             return 0;
         } else if (arg == "--change-desc" || arg == "--description") {
             std::string path = argv[++i];

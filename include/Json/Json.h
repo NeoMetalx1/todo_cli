@@ -8,12 +8,13 @@
 class Json {
 private:
     std::string jsonName;
+    std::string rootPath = "vault/";
 public:
     Json(const std::string& userJsonName) {
         jsonName = userJsonName;
         std::string path = "vault/" + jsonName + ".json";
 
-        if (!std::filesystem::exists(path)) {
+        if (std::filesystem::exists(rootPath)) {
             std::ofstream jsonVault(path);
             nlohmann::json jsonNew;
             jsonNew["Name"] = jsonName;
@@ -21,6 +22,9 @@ public:
             jsonNew["Status"] = false;
             jsonVault << std::setw(4) << jsonNew;
             jsonVault.close();
+            std::cout << "Task created!\n";
+        } else {
+            std::cout << "Cant find vault folder!\n";
         }
     }
 

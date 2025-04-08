@@ -12,7 +12,8 @@ private:
 public:
 
     CLI_GUI();
-    void printTasks();
+    void printAllTasks();
+    void printSpecifiedTask(const std::string& taskName);
     void helpMenu();
     void versionMenu();
 
