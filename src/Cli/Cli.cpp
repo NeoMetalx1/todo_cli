@@ -42,10 +42,12 @@ void CLI_GUI::helpMenu() {
     std::cout << "  -s, --show (optional:[task])                         Show your tasks\n";
     std::cout << "  -d, --delete [task]                                  Delete your task\n";
     std::cout << "  -c, --create [task]                                  Create new task\n";
-    std::cout << "  --change-desc, --description [task] [description]    Change Description in task\n";
+    std::cout << "  --ch-name, --name [task] [new name]                  Change task name\n";
+    std::cout << "  --ch-desc, --description [task] [description]        Change description in task\n";
+    std::cout << "  --ch-stat, --status [task]                           Change status of task\n";
     std::cout << "==========================================================================================\n";
 }
 
 void CLI_GUI::versionMenu() {
-    std::cout << ">> Program version v0.0.7\n";
+    std::cout << ">> Program version v0.0.8\n";
 }

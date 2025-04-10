@@ -34,10 +34,19 @@ int cliArguments::argumentHandler(int argc, char* argv[]) {
             *vaultName_ptr = argv[++i];
             vaultManage.createJsonVault(vaultName);
             return 0;
-        } else if (arg == "--change-desc" || arg == "--description") {
+        } else if (arg == "--ch-desc" || arg == "--description") {
             *vaultName_ptr = argv[++i];
             std::string description = argv[++i];
             vaultManage.editDiscription(vaultName, description);
+            return 0;
+        } else if (arg == "--ch-stat" || arg == "--status") {
+            *vaultName_ptr = argv[++i];
+            vaultManage.editStatus(vaultName);
+            return 0;
+        } else if (arg == "--ch-name" || arg == "--name") {
+            *vaultName_ptr = argv[++i];
+            std::string newName = argv[++i];
+            vaultManage.editTaskName(vaultName, newName);
             return 0;
         } else {
             std::cout << "Unknown argument: " << arg << "\n";

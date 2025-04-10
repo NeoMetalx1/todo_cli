@@ -11,8 +11,9 @@ private:
     std::string vaultPath = "vault/";
 public:
     void createJsonVault(const std::string& userJsonName);
+    void editTaskName(const std::string& userJsonName, const std::string& newName);
     void editDiscription(const std::string& userJsonName, const std::string& description);
-    void editStatus(const bool& status);
+    void editStatus(const std::string& userJsonName);
     void deleteVault(const std::string& userJsonName);
     void printTaskData(const std::string& vaultName);
 };
