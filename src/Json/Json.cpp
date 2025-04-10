@@ -18,24 +18,6 @@ void Json::createJsonVault(const std::string& userJsonName) {
     }
 }
 
-void Json::editTaskName(const std::string& userJsonName, const std::string& newName) {
-    jsonName = userJsonName;
-    std::string path = vaultPath + jsonName + ".json";
-    std::ifstream readFile(path); 
-    nlohmann::json existingJson;
-
-    if (readFile.is_open()) {  
-        readFile >> existingJson;
-        readFile.close();
-    }
-
-    existingJson["Name"] = newName;
-
-    std::ofstream jsonVault(path); // mb fix for --name option
-    jsonVault << std::setw(4) << existingJson;
-    jsonVault.close();
-}
-
 void Json::editDiscription(const std::string& userJsonName, const std::string& description) {
     jsonName = userJsonName;
     std::string path = vaultPath + jsonName + ".json";

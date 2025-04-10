@@ -43,11 +43,6 @@ int cliArguments::argumentHandler(int argc, char* argv[]) {
             *vaultName_ptr = argv[++i];
             vaultManage.editStatus(vaultName);
             return 0;
-        } else if (arg == "--ch-name" || arg == "--name") {
-            *vaultName_ptr = argv[++i];
-            std::string newName = argv[++i];
-            vaultManage.editTaskName(vaultName, newName);
-            return 0;
         } else {
             std::cout << "Unknown argument: " << arg << "\n";
             return 0;
