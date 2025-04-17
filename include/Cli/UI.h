@@ -12,7 +12,7 @@
     #include <unistd.h>
 #endif
 
-#define VERSION "v0.0.9"
+#define VERSION "v0.1.0"
 
 class UI {
 private:
