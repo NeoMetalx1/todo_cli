@@ -93,8 +93,8 @@ void Json::printTaskData(const std::string& vaultName) {
     std::string status = vaultEditor["Status"];
 
     std::cout << "==========================================================================================\n";
-    std::cout << "\tName: " << name << "\n";
-    std::cout << "\tDescription: " << description << "\n";
-    std::cout << "\tStatus: " << status << "\n";
+    std::cout << " Name: " << name << "\n";
+    std::cout << " Description: " << description << "\n";
+    std::cout << " Status: " << status << "\n";
     std::cout << "==========================================================================================\n";
 }

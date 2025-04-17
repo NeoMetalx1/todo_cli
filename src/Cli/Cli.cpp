@@ -1,52 +1,76 @@
 #include "../../include/Cli/Cli.h"
+UI interface;
+Json vaultManage;
 
-CLI_GUI::CLI_GUI() {
-    vaultList = vaultListScan(vaultPath);
-}
-
-std::vector<std::string> CLI_GUI::vaultListScan(const std::string& vaultPath) {
-    namespace fs = std::filesystem;
-
-    if (fs::is_directory(vaultPath))
-    {
-        std::vector<std::string> file_names;
-
-        for (const auto& entry : fs::recursive_directory_iterator(vaultPath))
+void CLI_GUI::optionHandler(int option) {
+    std::string vaultName;
+    switch (option) {
+        case 1: 
         {
-            if (entry.is_regular_file())
-            file_names.push_back(entry.path().stem().string());
+            interface.clearScreen();
+            interface.printAllTasks();
+            interface.waitForEnter();
+            break;
         }
-
-        return file_names;
-    } else return {};
-}
-
-void CLI_GUI::printAllTasks() {
-    if (!vaultList.empty()) {
-        std::cout << "Your tasks: \n";
-        for (int i = 0; i < vaultList.size(); i++) {
-            std::cout << vaultList[i] << "\n";
+        case 2: 
+        {
+            interface.clearScreen();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Enter name of new task: ";
+            std::getline(std::cin, vaultName);
+            vaultManage.createJsonVault(vaultName);
+            break;    
         }
-    } else {
-        std::cout << ">> Tasks not find!\n";
+        case 3:
+        {
+            interface.clearScreen();
+            interface.printAllTasks();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Enter name of task that you want to delete: ";
+            std::getline(std::cin, vaultName);
+            vaultManage.deleteVault(vaultName);
+            break;
+        }
+        case 4:
+        {
+            interface.clearScreen();
+            interface.printAllTasks();
+            std::string newDescription;
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Enter name of task to change description: ";
+            std::getline(std::cin, vaultName);
+            std::cout << "\n";
+            std::cout << "Enter new description: ";
+            std::getline(std::cin, newDescription);
+            vaultManage.editDiscription(vaultName, newDescription);
+            break;
+        }
+        case 5:
+        {
+            interface.clearScreen();
+            interface.printAllTasks();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Enter name of task to change status: ";
+            std::getline(std::cin, vaultName);
+            vaultManage.editStatus(vaultName);
+            break;
+        }
+        case 8:
+        {
+            interface.clearScreen();
+            interface.versionMenu();
+            interface.waitForEnter();
+            break;
+        }
+        case 9:
+        {
+            break;
+        }
+        default:
+        {
+            interface.clearScreen();
+            std::cout << "Invalid option!\n";
+            break;
+        }
     }
-
-}
-
-void CLI_GUI::helpMenu() {
-    std::cout << "===========================================================================================\n";
-    std::cout << "Usage: todo [option]\n";
-    std::cout << "  -h, --help                                           Show help menu\n";
-    std::cout << "  -v, --version                                        Show program version\n";
-    std::cout << "\n";
-    std::cout << "  -s, --show (optional:[task])                         Show your tasks\n";
-    std::cout << "  -d, --delete [task]                                  Delete your task\n";
-    std::cout << "  -c, --create [task]                                  Create new task\n";
-    std::cout << "  --ch-desc, --description [task] [description]        Change description in task\n";
-    std::cout << "  --ch-stat, --status [task]                           Change status of task\n";
-    std::cout << "==========================================================================================\n";
-}
-
-void CLI_GUI::versionMenu() {
-    std::cout << ">> Program version v0.0.8\n";
 }
