@@ -1,6 +1,6 @@
 # todo_cli
 
-`todo_cli` is a simple command-line interface (CLI) application written in C++ for managing a to-do list. It allows users to add, view, and manage their tasks directly from the terminal.
+`todo` is a simple command-line interface (CLI) application written in C++ for managing a to-do list. It allows users to add, view, and manage their tasks directly from the terminal.
 
 ## Features
 
@@ -10,7 +10,7 @@
 
 ## Installation
 
-To build and install `todo_cli` on your system, follow these steps:
+To build and install `todo` on your system, follow these steps:
 
 1. **Clone the Repository**:
 
@@ -38,11 +38,11 @@ To build and install `todo_cli` on your system, follow these steps:
    make
    ```
 
-   This will generate an executable named `todo_cli` in the project directory.
+   This will generate an executable named `todo` in the project directory.
 
 ## Usage
 
-After building the application, you can start using `todo_cli` to manage your tasks.
+After building the application, you can start using `todo` to manage your tasks.
 
    ```bash
    ./todo
