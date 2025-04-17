@@ -44,6 +44,12 @@ To build and install `todo_cli` on your system, follow these steps:
 
 After building the application, you can start using `todo_cli` to manage your tasks.
 
+   ```bash
+   ./todo
+   ```
+
+## Flags
+
 - **Help menu**:
 
   ```bash
