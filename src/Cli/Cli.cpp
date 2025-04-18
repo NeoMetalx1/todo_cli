@@ -13,8 +13,9 @@ void CLI_GUI::optionHandler(int option) {
             std::cout << "\n:: Do you want to open a specific task? [y/n]: ";
             std::cin >> userAnswer;
             if (userAnswer == 'y') {
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::cout << ":: Enter name of task: ";
-                std::cin >> vaultName;
+                std::getline(std::cin, vaultName);
                 interface.clearScreen();
                 vaultManage.printTaskData(vaultName);
                 interface.waitForEnter();

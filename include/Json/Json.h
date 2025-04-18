@@ -16,3 +16,4 @@ public:
     void deleteVault(const std::string& userJsonName);
     void printTaskData(const std::string& vaultName);
 };
+
