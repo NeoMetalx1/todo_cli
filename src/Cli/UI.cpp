@@ -22,6 +22,7 @@ std::vector<std::string> UI::vaultListScan(const std::string& vaultPath) {
 }
 
 void UI::printAllTasks() {
+    vaultList = vaultListScan(vaultPath);
     if (!vaultList.empty()) {
         std::cout << "Your tasks: \n";
         for (int i = 0; i < vaultList.size(); i++) {
@@ -34,7 +35,7 @@ void UI::printAllTasks() {
 }
 
 void UI::waitForEnter() {
-    std::cout << "Press enter" << "\n";
+    std::cout << "\n:: Press enter to continue" << "\n";
 #ifdef _WIN32
     while(true) {
         char key = _getch();
@@ -82,7 +83,7 @@ void UI::versionMenu() {
 }
 
 void UI::cliMainMenu() {
-    std::cout << "+-----------------------------------------------------------------------+" << "\n";
+    std::cout << "+---------------------------------+-------------------------------------+" << "\n";
     std::cout << "|             Options             |             Description             |" << "\n";
     std::cout << "+---------------------------------+-------------------------------------+" << "\n";
     std::cout << "| 1. Show all tasks               |                                     |" << "\n";
@@ -93,7 +94,7 @@ void UI::cliMainMenu() {
     std::cout << "|                                 +-------------------------------------|" << "\n";
     std::cout << "| 8. Show version                 | github:@NeoMetalx1                  |" << "\n";
     std::cout << "| 9. Exit                         |                                     |" << "\n";
-    std::cout << "+-----------------------------------------------------------------------+" << "\n";
+    std::cout << "+---------------------------------+-------------------------------------+" << "\n";
 }
 
 void UI::printLogo() {

@@ -7,9 +7,20 @@ void CLI_GUI::optionHandler(int option) {
     switch (option) {
         case 1: 
         {
+            char userAnswer;
             interface.clearScreen();
             interface.printAllTasks();
-            interface.waitForEnter();
+            std::cout << "\n:: Do you want to open a specific task? [y/n]: ";
+            std::cin >> userAnswer;
+            if (userAnswer == 'y') {
+                std::cout << ":: Enter name of task: ";
+                std::cin >> vaultName;
+                interface.clearScreen();
+                vaultManage.printTaskData(vaultName);
+                interface.waitForEnter();
+            } else {
+                interface.waitForEnter();
+            }
             break;
         }
         case 2: 
