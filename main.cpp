@@ -1,3 +1,12 @@
+/* code by :
+ _   _           ___  ___     _        _ 
+| \ | |          |  \/  |    | |      | |
+|  \| | ___  ___ | .  . | ___| |_ __ _| |      github: https://github.com/NeoMetalx1
+| . ` |/ _ \/ _ \| |\/| |/ _ \ __/ _` | |      rep: todo_cli
+| |\  |  __/ (_) | |  | |  __/ || (_| | |      
+\_| \_/\___|\___/\_|  |_/\___|\__\__,_|_|
+       78 101 111 77 101 116 97 108                    */
+
 #include "include/Json/Json.h"
 #include "include/Cli/UI.h"
 #include "include/Cli/Flags.h"
